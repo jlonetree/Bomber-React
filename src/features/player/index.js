@@ -1,21 +1,31 @@
 import React from 'react'
-import walkSprite from'./rpg_sprite_walk.png'
+import { connect } from 'react-redux'
+// import walkSprite from'./rpg_sprite_walk.png'
+import handleMovement from './movement'
 
 function Player(props){
 
     return(
         <div
         style={{
-            position: 'relative',
+            position: 'absolute',
             top: props.position[1],
             left: props.position[0],
-            backgroundImage: `url('${walkSprite})`,
+            // backgroundImage: `url('${walkSprite}')`,
+            backgroundColor: 'pink',
             backgroundPosition: '0, 0',
-            width: '40px',
-            height: '40px'
+            width: '20px',
+            height: '20px'
         }}
         />
     )
 }
 
-export default Player
+function mapStateToProps(state) {
+    return {
+        ...state.player,
+    }
+    
+}
+
+export default connect(mapStateToProps)(handleMovement(Player))

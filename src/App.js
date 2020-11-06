@@ -1,11 +1,12 @@
 import React from 'react'
-import Player from './features/player'
+import World from './features/world'
+
 class App extends React.Component {
 
   render(){
     return (
     <div>
-      <Player/>
+      <World/>
     </div>
     )
   }
