@@ -1,7 +1,7 @@
 import React from 'react'
 import Map from '../map'
 import Player from '../player'
-import { tiles } from '../data/levels/1'
+import { tiles } from '../../data/levels/1'
 
 function Map(props){
 
