@@ -1,16 +1,24 @@
 .tile {
     display: inline-flex;
+    background-image: url('./grass.png');
+    background-color: green;
+    text-indent: -9999px;    
 }
 
 .grass {
-    background-color: rgb(7, 240, 248);
+    background-image: url('./grass.png');
+    /* background-color: rgb(7, 240, 248); */
+}
+
+.grass-2 {
+    background-image: url('./grass2.png');
 }
 
 .rock {
-    /* background-image: url('/tiles/rock.png'); */
-    background-color: grey;
+    background-image: url('./rock.png');
+    /* background-color: grey; */
 }
 
 .tree{
-    background-color: brown;
+    background-image: url('./tree.png');
 }

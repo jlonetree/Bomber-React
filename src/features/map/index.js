@@ -8,6 +8,8 @@ function getTileSprite(type) {
     switch(type) {
         case 0:
             return 'grass'
+        case 1:
+            return 'grass-2'
         case 5:
             return 'rock'
         case 6:
@@ -20,7 +22,8 @@ function MapTile(props) {
     className={`tile ${getTileSprite(props.tile)}`}
     style={{
         height: SPRITE_SIZE,
-        width: SPRITE_SIZE
+        width: SPRITE_SIZE,
+         
     }}
     >
         {props.tile}

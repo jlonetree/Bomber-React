@@ -43,6 +43,8 @@ export default function handleMovement(player){
     }
 
     function attemptMove(direction){
+        let sprite = document.querySelector('.player_spritesheet')
+        sprite.className = `player_spritesheet ${direction}`
         const oldPos = store.getState().player.position
         const newPos = getNewPosition(oldPos, direction)
 
@@ -55,16 +57,20 @@ export default function handleMovement(player){
         e.preventDefault()
 
         switch(e.keyCode) {
-            case 37: 
+            case 37:
+            case 65: 
                 return attemptMove('WEST')
 
             case 38:
+            case 87:
                 return attemptMove('NORTH')
 
             case 39:
+            case 68:
                 return attemptMove('EAST')
 
             case 40:
+            case 83:
                 return attemptMove('SOUTH')
 
             default:
@@ -75,5 +81,10 @@ export default function handleMovement(player){
     window.addEventListener('keydown', (e) => {
         handleKeyDown(e)
     })
+
+    // window.addEventListener ('keyup', () => {
+    //     let sprite = document.querySelector('.player_spritesheet')
+    //     sprite.className = null
+    // })
     return player
 }
