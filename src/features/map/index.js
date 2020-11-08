@@ -1,5 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { SPRITE_SIZE } from '../../config/constants'
+
 import './styles.css'
 
 function getTileSprite(type) {
@@ -15,7 +17,7 @@ function getTileSprite(type) {
 
 function MapTile(props) {
     return <div 
-        className={`tile ${getTileSprite(props.type)}`}
+        className={`tile ${getTileSprite(props.tile)}`}
         style={{
             height: SPRITE_SIZE,
             width: SPRITE_SIZE,
@@ -51,4 +53,10 @@ function Map(props) {
     )
 }
 
-export default Map
+function mapStateToProps(state) {
+    return {
+        tiles: state.level.tiles,
+    }
+}
+
+export default connect(mapStateToProps)(Map)
