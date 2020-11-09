@@ -22,3 +22,24 @@
 .tree{
     background-image: url('./tree.png');
 }
+
+.bomb {
+    background-image: url('./bomb.png');
+    background-repeat: no-repeat;
+}
+
+.dirt{
+    background-image: url('./dirt.png');
+}
+
+.explode {
+    background-image: url('./explode.png');
+    animation: essplosion 100ms  infinite;
+}
+
+@keyframes essplosion {
+    50% {
+        opacity: 0;
+        background-color: white;
+    }
+}
