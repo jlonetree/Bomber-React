@@ -70,46 +70,57 @@ export default function handleMovement(player){
 
     function esssplode(tile, coordinates) {
         const tiles = store.getState().map.tiles
-       tile.className = 'tile grass'
-       let tileData = tile.getBoundingClientRect()
-       let fullScreenMod = 280
-       let tileUp = document.elementFromPoint(coordinates[0] + (fullScreenMod + 40), coordinates[1])
-       let testTile = tileUp.nextElementSibling
-       let tileDown = document.elementFromPoint(coordinates[0] + (fullScreenMod + 40), coordinates[1] + 80)
-       let tileLeft = document.elementFromPoint(coordinates[0] + fullScreenMod, coordinates[1] + 40)
-       let tileRight = document.elementFromPoint(coordinates[0] + (fullScreenMod + 80), coordinates[1] + 40)
+        tile.className = 'tile explode'
+
+       let currentTileId = parseInt(tile.id)
+        // if(currentTileId - ){
+
+        // }else{
+       let tileUp = document.getElementById(`${currentTileId - 80}`)
+       let tileDown = document.getElementById(`${currentTileId + 80}`)
+       let tileLeft = document.getElementById(`${currentTileId - 2}`)
+       let tileRight = document.getElementById(`${currentTileId + 2}`)
        tileRight.className = 'tile explode'
        tileUp.className = 'tile explode'
        tileLeft.className = 'tile explode'
        tileDown.className = 'tile explode'
+
+       let twoTileUp = document.getElementById(`${currentTileId - 160}`)
+       let twoTileDown = document.getElementById(`${currentTileId + 160}`)
+       let twoTileLeft = document.getElementById(`${currentTileId - 4}`)
+       let twoTileRight = document.getElementById(`${currentTileId + 4}`)
+       twoTileUp.className = 'tile explode'
+       twoTileDown.className = 'tile explode'
+       twoTileLeft.className = 'tile explode'
+       twoTileRight.className = 'tile explode'
+
        const y = coordinates[1] / SPRITE_SIZE
        const x = (coordinates[0] / SPRITE_SIZE)
-       const twoRightX = (coordinates[0] / SPRITE_SIZE) + 2
-       const twoLeftX= (coordinates[0] / SPRITE_SIZE) - 2
-       const twoUpY = (coordinates[1] / SPRITE_SIZE) - 2
-       const twoDownY = (coordinates[1] / SPRITE_SIZE) + 2
-       const oneRightX = (coordinates[0] / SPRITE_SIZE) + 1
-       const oneLeftX= (coordinates[0] / SPRITE_SIZE) - 1
-       const oneUpY = (coordinates[1] / SPRITE_SIZE) - 1
-       const oneDownY = (coordinates[1] / SPRITE_SIZE) + 1
-       tiles[y][twoRightX] = 0
-       tiles[y][twoLeftX] = 0
-       tiles[twoUpY][x] = 0
-       tiles[twoDownY][x] = 0
-       tiles[y][oneRightX] = 0
-       tiles[y][oneLeftX] = 0
-       tiles[oneUpY][x] = 0
-       tiles[oneDownY][x] = 0
-    // console.log('countdown complete', tile, tileUp, tileDown, tileLeft, tileRight, coordinates, x, y)
-    console.log('')
-    return setTimeout(resolveEsssplode, 700, tileUp, tileDown, tileLeft, tileRight)
+ 
+       tiles[y][x + 2] = 0
+       tiles[y][x - 2] = 0
+       tiles[y - 2][x] = 0
+       tiles[y + 2][x] = 0
+       tiles[y][x + 1] = 0
+       tiles[y][x - 1] = 0
+       tiles[y - 1][x] = 0
+       tiles[y + 1][x] = 0
+       
+    return setTimeout(resolveEsssplode, 700, tileUp, tileDown, tileLeft, tileRight, tile,
+        twoTileUp, twoTileDown, twoTileLeft, twoTileRight)
+    // }
     }
 
-    function resolveEsssplode(up, down, left, right){
+    function resolveEsssplode(up, down, left, right, tile, twoUp, twoDown, twoLeft, twoRight){
        up.className = 'tile grass'
        down.className = 'tile grass'
        left.className = 'tile grass'
        right.className = 'tile grass'
+       tile.className = 'tile grass'
+       twoUp.className = 'tile grass'
+       twoDown.className = 'tile grass'
+       twoLeft.className = 'tile grass'
+       twoRight.className = 'tile grass'
     }
 
     function handleKeyDown(e) {
