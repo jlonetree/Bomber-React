@@ -1,0 +1,45 @@
+.tile {
+    display: inline-flex;
+    background-image: url('./grass.png');
+    background-color: green;
+    text-indent: -9999px;    
+}
+
+.grass {
+    background-image: url('./grass.png');
+    /* background-color: rgb(7, 240, 248); */
+}
+
+.grass-2 {
+    background-image: url('./grass2.png');
+}
+
+.rock {
+    background-image: url('./rock.png');
+    /* background-color: grey; */
+}
+
+.tree{
+    background-image: url('./tree.png');
+}
+
+.bomb {
+    background-image: url('./bomb.png');
+    background-repeat: no-repeat;
+}
+
+.dirt{
+    background-image: url('./dirt.png');
+}
+
+.explode {
+    background-image: url('./explode.png');
+    animation: essplosion 100ms  infinite;
+}
+
+@keyframes essplosion {
+    50% {
+        opacity: 0;
+        background-color: white;
+    }
+}
