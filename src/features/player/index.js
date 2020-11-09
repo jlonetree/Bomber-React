@@ -7,26 +7,7 @@ import './styles.css'
 
 function Player(props){
 
-    // handleClassDirection = (e) =>{
-    //     e.preventDefault()
-
-    //     switch(e.keyCode) {
-    //         case 37: 
-    //             return 'WEST'
-
-    //         case 38:
-    //             return 'NORTH'
-
-    //         case 39:
-    //             return 'EAST'
-
-    //         case 40:
-    //             return 'SOUTH'
-
-    //         default:
-    //             console.log(e.keyCode)
-    //     }
-    // }
+  
 
     return(
         <div
@@ -35,8 +16,7 @@ function Player(props){
             position: 'absolute',
             top: props.position[1],
             left: props.position[0],
-            // backgroundImage: `url('${walkSprite}')`,
-            // backgroundColor: 'pink',
+           
             backgroundPosition: '0, 0',
             width: '20px',
             height: '20px'

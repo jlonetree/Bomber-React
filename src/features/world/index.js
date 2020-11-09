@@ -9,7 +9,7 @@ function World(props) {
     store.dispatch({ type: 'ADD_TILES', payload: {
         tiles
     }})
-    
+
     return(
         <div
         style = {{
@@ -19,7 +19,7 @@ function World(props) {
             margin: '20px auto'
         }}
         > 
-            <Map />
+            <Map/>
             <Player/>
         </div>
     )
