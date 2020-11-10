@@ -1,0 +1,31 @@
+:root {
+    --pixel-size: 6;
+}
+
+.player {
+    overflow: hidden;
+}
+
+.player_spritesheet {
+    animation: moveSpriteSheet 1s steps(3) infinite;
+    position: absolute
+}
+
+.EAST {
+    top: -21px
+}
+.NORTH {
+    top: -41px
+}
+.WEST {
+    top: -61.2px
+}
+
+@keyframes moveSpriteSheet {
+    from {
+        transform: translate3d(0px,0,0);
+    }
+    to {
+        transform: translate3d(-110%,0,0);
+    }
+}

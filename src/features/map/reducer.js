@@ -3,7 +3,7 @@ const initialState = {
     tiles: [],
 }
 
-const levelReducer = (state=initialState, action) => {
+const mapReducer = (state=initialState, action) => {
     switch(action.type){
         case 'ADD_TILES':
             return{
@@ -14,4 +14,4 @@ const levelReducer = (state=initialState, action) => {
     }
 }
 
-export default levelReducer
+export default mapReducer

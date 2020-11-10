@@ -5,9 +5,13 @@ import { SPRITE_SIZE } from '../../config/constants'
 import './styles.css'
 
 function getTileSprite(type) {
-    switch (type) {
+    switch(type) {
         case 0:
             return 'grass'
+        case 4:
+            return 'bomb'
+        case 1:
+            return 'grass-2'
         case 5:
             return 'rock'
         case 6:
@@ -17,20 +21,22 @@ function getTileSprite(type) {
 
 function MapTile(props) {
     return <div 
-        className={`tile ${getTileSprite(props.tile)}`}
-        style={{
-            height: SPRITE_SIZE,
-            width: SPRITE_SIZE,
-        }}
+    className={`tile ${getTileSprite(props.tile)}`}
+    style={{
+        height: SPRITE_SIZE,
+        width: SPRITE_SIZE,
+         
+    }}
     >
         {props.tile}
-    </div>
+        </div>
+
 }
 
 function MapRow(props) {
     return <div className="row">
         {
-            props.tiles.map(tile => <MapTile tile={tile} />)
+            props.tiles.map( tile => <MapTile tile={tile} />)
         }
     </div>
 }
@@ -44,18 +50,20 @@ function Map(props) {
                 left: '0px',
                 width: '800px',
                 height: '400px',
-                backgroundColor: 'green',
+                backgroundColor: 'black',
                 border: '4px solid white'
             }}
         >
-            {props.tiles.map(row => <MapRow tiles={row} />)}
+        {
+            props.tiles.map( row => <MapRow tiles={row}/>)
+        }
         </div>
     )
 }
 
 function mapStateToProps(state) {
-    return {
-        tiles: state.level.tiles,
+    return{
+        tiles: state.map.tiles
     }
 }
 
