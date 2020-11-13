@@ -2,16 +2,26 @@ import React from 'react'
 import Player from '../player'
 import Map from '../map'
 
-import { tiles } from '../../data/maps/1'
+import { tiles, tiles2 } from '../../data/maps/1'
 import store from '../../config/store'
 
-function World(props) {
-    store.dispatch({ type: 'ADD_TILES', payload: {
-        tiles
-    }})
+store.dispatch({ type: 'ADD_TILES', payload: {
+    tiles
+}})
 
+class World extends React.Component{
+    
+
+     handleKeyPres = (e) => {
+        if(e.charCode === 13){
+            console.log('enter press here! ')
+          }
+    }
+    render(){
     return(
-        <div className="game-world"
+        
+        <div onKeyPress={(e) => this.handleKeyPress(e)}
+        className = 'game-world'
         style = {{
             position: 'relative',
             width: '800px',
@@ -22,7 +32,7 @@ function World(props) {
             <Map/>
             <Player/>
         </div>
-    )
+    )}
 }
 
 export default World

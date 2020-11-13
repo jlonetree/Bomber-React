@@ -1,6 +1,7 @@
 
 const initialState = {
     position: [0, 0],
+    // bombs: 3
 }
 
 const playerReducer = (state=initialState, action) => {

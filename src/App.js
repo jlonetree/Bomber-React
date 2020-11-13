@@ -9,6 +9,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import BombCount from './features/bombCount'
 
 const url = `http://localhost:3001/api/v1/usernames/`
 

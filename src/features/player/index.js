@@ -1,21 +1,36 @@
 import React from 'react'
+
+// import React, {useState} from 'react';
+
 import { connect } from 'react-redux'
 import walkSprite from'./MainGuySpriteSheet.png'
 import handleMovement from './movement'
 
 import './styles.css'
 
-function Player(props){
+// function handleKeyPress (e) {
+ 
+// }
 
-  
+class Player extends React.Component {
+    // const [bombs, setBombs] = useState({
+    //     bombs: 3
+    // })
+   
+    // handleKeyPress = (e) => {
+    //     e.preventDefault()
+    //     console.log("keypress")
+    // }
 
+render(){
     return(
         <div
+        // onKeyPress = {(e) => this.handleKeyPress(e)}
         className = 'player'
         style={{
             position: 'absolute',
-            top: props.position[1],
-            left: props.position[0],
+            top: this.props.position[1],
+            left: this.props.position[0],
            
             backgroundPosition: '0, 0',
             width: '20px',
@@ -26,6 +41,7 @@ function Player(props){
         <img className = 'player_spritesheet' src = {walkSprite}  />
         </div>
     )
+    }
 }
 
 function mapStateToProps(state) {
