@@ -19,9 +19,18 @@ function getTileSprite(type) {
     }
 }
 
+let idIndex = 0
+
+function getNewId(){
+    // let prefix = 'tile-'
+    // return prefix + (++idIndex) 
+    return ++idIndex
+}
+
 function MapTile(props) {
     return <div 
     className={`tile ${getTileSprite(props.tile)}`}
+    id = {`${getNewId()}`}
     style={{
         height: SPRITE_SIZE,
         width: SPRITE_SIZE,
@@ -36,7 +45,7 @@ function MapTile(props) {
 function MapRow(props) {
     return <div className="row">
         {
-            props.tiles.map( tile => <MapTile tile={tile} />)
+            props.tiles.map( tile => <MapTile tile={tile}/>)
         }
     </div>
 }
