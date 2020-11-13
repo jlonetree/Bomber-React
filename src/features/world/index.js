@@ -10,7 +10,6 @@ store.dispatch({ type: 'ADD_TILES', payload: {
 }})
 
 class World extends React.Component{
-    
 
      handleKeyPres = (e) => {
         if(e.charCode === 13){
