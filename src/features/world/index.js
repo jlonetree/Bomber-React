@@ -11,7 +11,7 @@ function World(props) {
     }})
 
     return(
-        <div
+        <div className="game-world"
         style = {{
             position: 'relative',
             width: '800px',

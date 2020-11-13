@@ -139,9 +139,9 @@ export default function handleMovement(player) {
         }
     }
 
-    window.addEventListener('keydown', (e) => {
-        handleKeyDown(e)
-    })
+    // window.addEventListener('keydown', (e) => {
+    //     handleKeyDown(e)
+    // })
 
     // window.addEventListener ('keyup', () => {
     //     let sprite = document.querySelector('.player_spritesheet')

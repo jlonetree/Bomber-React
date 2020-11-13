@@ -1,32 +1,65 @@
 import React from 'react'
 import World from './features/world'
-import Registration from './registration/index'
+import Registration from './components/registration/registration'
+import Login from './components/login/login'
+import './App.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-const url = 'http://localhost:3000/usernames/'
+const url = `http://localhost:3001/api/v1/usernames/`
 
 class App extends React.Component {
 
-  createUser = (newUser) => {
+  state = {
+    users: [],
+    currentUser: ""
+  }
 
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(newUser)
-    })
-      .then(res => res.json)
-      .then(data => console.log(data))
+  componentDidMount() {
+    fetch(url)
+      .then(res => res.json())
+      .then(users => this.setState({ users: users }))
+  }
+
+  addUser = newUser => {
+    console.log(newUser)
+    this.setState({ users: [...this.state.users, newUser] })
   }
 
   render() {
     return (
-      <div>
-        <Registration createUser={this.createUser}/>
-        <World />
-      </div>
-    )
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/" >Game</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/registration">Registration</Link>
+            </li>
+          </ul>
+
+          <Switch>
+            <Route exact path="/registration">
+              <Registration addUser={this.addUser} />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/">
+              <World />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    );
   }
 }
 
