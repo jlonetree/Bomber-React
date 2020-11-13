@@ -8,7 +8,7 @@ class App extends React.Component {
     return (
     <div>
       <World/>
-      <BombCount/>
+      {/* <BombCount/> */}
     </div>
     )
   }
