@@ -2,6 +2,7 @@ import store from '../../config/store'
 import { MAP_HEIGHT, MAP_WIDTH, SPRITE_SIZE } from '../../config/constants'
 import { current } from '@reduxjs/toolkit'
 
+
 export default function handleMovement(player){
 
     function getNewPosition(oldPos, direction) {
@@ -56,6 +57,7 @@ export default function handleMovement(player){
 
     function deployBomb() {
         console.log('boom')
+        const bombCount = store.getState().bomb
         const oldPos = store.getState().player.position
         const tiles = store.getState().map.tiles
         const y = oldPos[1] / SPRITE_SIZE
@@ -64,6 +66,16 @@ export default function handleMovement(player){
         let fullScreenXMod = 320
         let bombsTile = document.elementFromPoint(oldPos[0] + 320, oldPos[1] + 40)
         bombsTile.className = 'tile bomb' 
+        console.log(bombCount)
+        
+        store.dispatch({
+            type: 'DECREMENT',
+            // payload: {
+            //     
+            // }
+        })
+        
+
          return setTimeout(esssplode, 2500, bombsTile, oldPos)
         
     }
@@ -89,7 +101,7 @@ export default function handleMovement(player){
  
     //    tiles[y][x + 2] = 0
     //    tiles[y][x - 2] = 0
-    //    tiles[y - 2][x] = 0 //up
+    //    tiles[y - 2][x] = 0 //two up
     //    tiles[y + 2][x] = 0
     //    tiles[y][x + 1] = 0
     //    tiles[y][x - 1] = 0
@@ -142,7 +154,7 @@ export default function handleMovement(player){
            if(!megaRightArr.includes(parseInt(twoTileLeft.id))){
             twoTileLeft.className = 'tile explode'
             tiles[y][x - 2] = 0
-            console.log(!megaRightArr.includes(parseInt(twoTileLeft.id)), parseInt(twoTileLeft.id))
+            // console.log(!megaRightArr.includes(parseInt(twoTileLeft.id)), parseInt(twoTileLeft.id))
            } else {
                twoTileLeft = null
            }
@@ -152,7 +164,7 @@ export default function handleMovement(player){
            if(!rightArr.includes(parseInt(tileLeft.id))){
             tileLeft.className = 'tile explode'
             tiles[y][x - 1] = 0
-            console.log(!rightArr.includes(parseInt(tileLeft.id)), parseInt(tileLeft.id))
+            // console.log(!rightArr.includes(parseInt(tileLeft.id)), parseInt(tileLeft.id))
            }else{
                tileLeft = null
            }
@@ -162,7 +174,7 @@ export default function handleMovement(player){
             if(!megaLeftArr.includes(parseInt(twoTileRight.id))){
             twoTileRight.className = 'tile explode'
             tiles[y][x + 2] = 0
-            console.log(!megaLeftArr.includes(parseInt(twoTileRight.id)), parseInt(twoTileRight.id))
+            // console.log(!megaLeftArr.includes(parseInt(twoTileRight.id)), parseInt(twoTileRight.id))
             }else{
                 twoTileRight = null
             }
@@ -172,7 +184,7 @@ export default function handleMovement(player){
            if(!leftArr.includes(parseInt(tileRight.id))){
         tileRight.className = 'tile explode'
         tiles[y][x + 1] = 0
-        console.log(!leftArr.includes(parseInt(tileRight.id)), parseInt(tileRight.id))
+        // console.log(!leftArr.includes(parseInt(tileRight.id)), parseInt(tileRight.id))
            }else{
             tileRight = null
            }
@@ -182,21 +194,14 @@ export default function handleMovement(player){
     //    tiles[y][x - 2] = 0
     //    tiles[y][x + 1] = 0
     //    tiles[y][x - 1] = 0
+    //     const bombs = store.getState().player.bombs
+    //    console.log(bombs[1])
       
         return setTimeout(resolveEsssplode, 700, tileUp, tileDown, tileLeft, tileRight, tile,
             twoTileUp, twoTileDown, twoTileLeft, twoTileRight)
     }
 
     function resolveEsssplode(up, down, left, right, tile, twoUp, twoDown, twoLeft, twoRight){
-       
-        // up.className = 'tile dirt'
-    //    down.className = 'tile dirt'
-      
-    //    twoUp.className = 'tile dirt'
-    //    twoUp.className = (twoUp === null) ? null : 'tile dirt'
-    //    twoDown.className = 'tile dirt'
-        // left.className = 'tile dirt'
-        // right.className = 'tile dirt'
         tile.className = 'tile dirt'
        if(right !== null){right.className = 'tile dirt'}
        if(twoRight !== null){twoRight.className = 'tile dirt'}
@@ -210,6 +215,7 @@ export default function handleMovement(player){
 
     function handleKeyDown(e) {
         e.preventDefault()
+        const bombCount = store.getState().bomb
 
         switch(e.keyCode) {
             case 37:
@@ -228,20 +234,51 @@ export default function handleMovement(player){
             case 83:
                 return attemptMove('SOUTH')
             case 32:
+                if(bombCount != 0){
                 return deployBomb()
+                }else{ return null}
 
             default:
                 console.log(e.keyCode)
         }
     }
+    // setTimeout(() => { 
+    // // document.addEventListener("DOMContentLoaded", () => {
+    //     let gameWorld = document.querySelector(".game-world")
+    //     console.log('this div', gameWorld)
+    //     gameWorld.addEventListener('click', (e) => {
+    //     listen()
+    //     })
+    //     // if (gameWorld != null){
+    //     //     listen()
+    //     // } 
+    //     // })
 
-    window.addEventListener('keydown', (e) => {
-        handleKeyDown(e)
+    // })
+
+    setTimeout(() => { 
+        let gameWorld = document.querySelector(".game-world")
+        console.log('this div', gameWorld)
+        gameWorld.addEventListener('click', (e) => {
+            listen()
+        })
     })
 
-    // window.addEventListener ('keyup', () => {
-    //     let sprite = document.querySelector('.player_spritesheet')
-    //     sprite.className = null
+    function listen(){
+        window.addEventListener('keydown', (e) => {
+        handleKeyDown(e)
+    })
+    }
+
+    // let gameWorld = document.querySelector(".game-world")
+    // const observer = new MutationObserver(mutations => {
+
     // })
+    // observer.observe(gameWorld, {
+    //     attributes: true 
+    // })
+
+    
+
     return player
 }

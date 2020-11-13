@@ -1,5 +1,6 @@
 import React from 'react'
 import World from './features/world'
+import BombCount from './features/bombCount'
 
 class App extends React.Component {
 
@@ -7,6 +8,7 @@ class App extends React.Component {
     return (
     <div>
       <World/>
+      {/* <BombCount/> */}
     </div>
     )
   }
