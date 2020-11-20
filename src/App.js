@@ -2,6 +2,7 @@ import React from 'react'
 import World from './features/world'
 import Registration from './components/registration/registration'
 import Login from './components/login/login'
+import Update from './components/update/Update'
 import './App.css'
 import {
   BrowserRouter as Router,
@@ -36,7 +37,7 @@ class App extends React.Component {
       <Router>
         <div>
           <ul>
-            <li>
+            <li className="game">
               <Link to="/" >Game</Link>
             </li>
             <li>
@@ -45,9 +46,15 @@ class App extends React.Component {
             <li>
               <Link to="/registration">Registration</Link>
             </li>
+            <li>
+              <Link to="/update">Update User</Link>
+            </li>
           </ul>
 
           <Switch>
+            <Route exact path="/update">
+              <Update />
+            </Route>
             <Route exact path="/registration">
               <Registration addUser={this.addUser} />
             </Route>
